@@ -3,95 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <title>Juego Martín Fierro(Phaseeeeer)</title>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script> <!-- <------- librería         -->
+    <!-- <------- librería         -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-<script>
-    const config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        backgroundColor: '#333333',
-        scene: {
-            preload: preload,
-            create: create,
-            update: update
-        }
-    };
-
-    const game = new Phaser.Game(config);
-
-    let vidas = 3;
-    let versosCompletados = 0;
-    let dificultad = 'normal'; // 'exploracion' o 'vidaUnica'
-
-    const versos = [
-        { correcto: "corazón", opciones: ["corazón", "sueño", "mañana", "luna"] },
-        // esto versos son de chatgpt, pero van las 3 opciones , la correcta y 2 falopas
-    ];
-
-    function preload() {
-        // para prerenderizar contenido, imágenes, sonido(no sé si usemos), etc
-    }
-
-    function create() {
-        // cubitos de ejemplo
-        this.add.rectangle(200, 300, 100, 100, 0xff0000); // cubito rojo
-        this.add.rectangle(600, 300, 100, 100, 0x0000ff); // cubito azul
-
-        // llamadas de las funciones del juego
-        mostrarVerso.call(this);
-        mostrarVidas.call(this);
-        crearOpciones.call(this);
-    }
-
-    function mostrarVerso() {
-        //    mostrar el verso actual
-    }
-
-    function mostrarVidas() {
-        // ver las vidas restantes
-    }
-
-    function crearOpciones() {
-        //  mostrar las opciones a elegir entre versos
-    }
-
-    function manejarSeleccion(opcionElegida) {
-        if (opcionElegida === versos[versosCompletados].correcto) {
-            versosCompletados++;
-            if (versosCompletados >= 10) {
-                ganarJuego();
-            } else {
-                mostrarVerso();
-                crearOpciones();
-            }
-        } else {
-            if (dificultad === 'vidaUnica') {
-                versosCompletados = 0;
-            } else {
-                vidas--;
-            }
-            if (vidas <= 0) {
-                perderJuego();
-            } else {
-                mostrarVidas();
-            }
-        }
-    }
-
-    function ganarJuego() {
-        // victoriaaaaaaaaaaaaaa
-    }
-
-    function perderJuego() {
-        // que lástima
-    }
-
-    function update() {
-        // qsy, esta función está en la mayoría de los juegos, sino lo usamos pa fuera
-        // supongo que es para actualizar recursos y variables
-    }
-</script>
 </body>
+<script type="module" src="js/main.js"></script>
 </html>
