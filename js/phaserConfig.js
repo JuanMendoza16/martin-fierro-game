@@ -1,10 +1,17 @@
+import { VersosFunciones } from "./versos.js";
+import { ObtenerMulFuente } from "./utils.js";
+const versos = new VersosFunciones();
+
+
+
+
 let resolucion = {
     ancho:window.innerWidth,
     alto: window.innerHeight
 };
 
-let multAlturaFuente = 0.05; //Cuanto espacio ocupa cada letra relativo a la imagen de fondo
-
+let multFuentePer = 0.07; //Cuanto espacio ocupa cada letra relativo a la imagen de fondo
+let versoActual = versos.obtenerVerso();
 
 
 function preload() {
@@ -13,30 +20,33 @@ function preload() {
 };       
         
 function create() {
-    this.fondo = this.add.image(0,0,"fondo") //Ejemplo
+
+    this.fondo = this.add.image(0,0,"fondo") 
                 .setOrigin(0,0)
                 .setDisplaySize(resolucion.ancho,resolucion.alto)
                 .setDepth(-2);
                 
-    this.fondoTexto = this.add.image(0,0,"fondoTexto") //Ejemplo
+    this.fondoTexto = this.add.image(0,0,"fondoTexto") 
                 .setDisplaySize(resolucion.ancho/2, resolucion.alto/1.5)
-                .setOrigin(0.5)
+                .setOrigin(0.5,0)
                 .setDepth(-1);
 
-    this.fondoTexto.preFX.addBlur(0,1,1,3, 0xf5c42f,2); //Efecto sepia croto, lo vamos a tener que hacer con phsp
-                
-    const alturaFuente = Math.floor(this.fondoTexto.displayHeight * multAlturaFuente); // 8% del alto
-    this.texto = this.add.text(0,0,"Este es un texto de prueba. Debería ajustarse automáticamente al ancho del fondoTexto, manteniendo márgenes proporcionales y un formato justificado.", 
-                              { fontFamily: 'Arial', fontSize: '${alturaFuente}px', fill: '#000000ff' })
-                 .setOrigin(0,0)
-                 .setPosition(this.fondoTexto.getTopLeft())
-                 .setAlign("justify")
-                 .setStyle({
-                    wordWrap: {
-                    width: this.fondoTexto.displayWidth*0.9, // 80% del ancho del fondo
-                    useAdvancedWrap: true
-                    }
-                });
+    this.fondoTexto.preFX.addBlur(0,1,1,3, 0xfffff,2); 
+             
+    const alturaFuente = obtenerTamañoLetra(versoActual.texto,this.fondoTexto.displayHeight); 
+    
+    this.texto = this.add.text(0,0,versoActual.texto, { fontFamily: 'Arial', fontSize: '${alturaFuente}px', fill: '#000000ff' })
+                         .setOrigin(0.5)
+                         .setPosition(this.fondoTexto.getTopLeft())
+                         .setAlign("justify")
+                         .setStyle({
+                             wordWrap: {
+                             width: this.fondoTexto.displayWidth*0.9, 
+                             useAdvancedWrap: true
+                             }
+                         });
+
+    reposicionarTexto(this.scale.height,this.scale.width,this.fondoTexto,this.texto);
 }
         
 function update() {
@@ -45,30 +55,40 @@ function update() {
     let anchoCanvas  = this.scale.width; 
     
     this.scale.on("resize", (gameSize) =>{
-        
-        let posicionFondoTexto = {x:anchoCanvas / 2,
-                                  y:alturaCanvas / 2
-                            };
-                            
-                            
-                            
         this.fondo.setDisplaySize(anchoCanvas, alturaCanvas);
-        
-        this.fondoTexto.setDisplaySize(anchoCanvas / 2, alturaCanvas / 1.5)
-                       .setPosition(posicionFondoTexto.x, posicionFondoTexto.y);
-        
-        let esquina = this.fondoTexto.getTopLeft();
-        const alturaFuente = Math.floor(this.fondoTexto.displayHeight * multAlturaFuente);
-        this.texto.setPosition(esquina.x*1.1,esquina.y*1.1)
-                  .setStyle({
-                    fontSize: alturaFuente,
-                    wordWrap: {
-                    width: this.fondoTexto.displayWidth*0.9
-                    }});
-                            
+        reposicionarTexto(alturaCanvas,anchoCanvas,this.fondoTexto,this.texto);
     });
 }
 
+function reposicionarTexto(alturaCanvas, anchoCanvas,fondoTexto,texto){
+
+         let posicionFondoTexto = {
+                                    x:anchoCanvas / 2,
+                                    y:alturaCanvas*0.05
+                                  };
+        
+        let esquina = fondoTexto.getTopLeft();
+
+        fondoTexto.setDisplaySize(anchoCanvas / 2, alturaCanvas/2)
+                  .setPosition(posicionFondoTexto.x, posicionFondoTexto.y);
+        
+
+        const alturaFuente = obtenerTamañoLetra(versoActual.texto,fondoTexto.displayHeight); 
+
+        texto.setPosition(esquina.x+fondoTexto.displayWidth/2,esquina.y+fondoTexto.displayHeight/2)
+             .setStyle({
+                    fontSize: alturaFuente,
+                    wordWrap: {
+                    width:fondoTexto.displayWidth*0.9
+                    }
+                });
+                            
+}
+
+function obtenerTamañoLetra(texto, alturaContenedor){
+    let multFuente = texto.length<100 ? 1:0.6;
+    return Math.floor( alturaContenedor * multFuentePer* multFuente);
+}
 
 export function PhaserConfig() {
     return {
@@ -83,9 +103,10 @@ export function PhaserConfig() {
                 update: update
             },
             scale: {
-                mode: Phaser.Scale.RESIZE,  // Permite el ajuste dinámico al redimensionar la ventana
-                autoCenter: Phaser.Scale.CENTER_BOTH  // Centra la escena
+                mode: Phaser.Scale.RESIZE,  
+                autoCenter: Phaser.Scale.CENTER_BOTH  
             }
         }
     }
 }
+
