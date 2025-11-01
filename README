@@ -1,1 +1,132 @@
+# 🎮 Payada: Martín Fierro vs Moreno
 
+**Versión:** 1.0  
+**Motor:** [Phaser 3](https://phaser.io/)  
+**Autor:** Juan M. Mendoza Ramírez, Joaquín A. Herreros Knaus
+**Inspirado en:** *El Martín Fierro* de José Hernández  
+
+---
+
+## 📜 Descripción
+
+“**Payada: Martín Fierro vs Moreno**” es un juego educativo y cultural ambientado en el universo del clásico poema gauchesco *Martín Fierro*.  
+El jugador participa en una **payada** (duelo de versos) entre **Martín Fierro** y **El Moreno**, eligiendo el **octosílabo correcto** para completar los versos de la obra.
+
+Combina elementos **literarios**, **históricos** y **musicales** con una estética **pixel art gauchesca**, recreando la atmósfera de una **pulpería pampeana** del siglo XIX.
+
+---
+
+## 🧩 Mecánica del juego
+
+- Cada ronda muestra un **verso incompleto**.
+- El jugador debe elegir **entre 4 opciones** la continuación correcta.
+- Si acierta, el duelo continúa; si falla, **pierde una vida**.
+- Existen tres modos de dificultad:
+  - 🎩 **Exploración:** sin límite de vidas (modo historia)
+  - ⚔️ **Clásico:** 3 vidas
+  - 💀 **Duelo:** 1 sola vida
+- Al perder todas las vidas aparece la pantalla de **Game Over**, con una guitarra rota de fondo.
+- El progreso (versos completados) se **guarda en `localStorage`**.
+
+---
+
+## 🖼️ Estilo visual
+
+- **Arte:** pixel art en 8–16 bits  
+- **Escenarios:**  
+  - `menu-fondo.jpg` → campo pampeano con texto animado “Payada de Fierro”  
+  - `fondo.jpg` → pulpería (campo de batalla principal)  
+  - `fondo-texto.jpg` → pergamino para mostrar versos  
+  - `guitarra-rota.png` → fondo de Game Over  
+
+- **Sprites:**
+  - `fierro_sprites.png` → Martín Fierro sentado con guitarra  
+  - `moreno_sprites.png` → El Moreno sentado con guitarra  
+  - `boton.png` → botones de estilo criollo (madera pixel art)
+
+---
+
+## 🔊 Sonido y ambiente
+
+- Música de fondo: **guitarra criolla** (loop suave)  
+- Efectos:
+  - Error → risa del Moreno / cuerda rota  
+  - Acierto → rasgueo de guitarra  
+  - Game Over → acorde disonante  
+
+*(Los sonidos se cargarán desde la carpeta `assets/audio/`)*
+
+---
+
+## 🧱 Estructura del proyecto
+```
+martin-fierro-game/
+│
+├── index.html
+├── README.md
+│
+├── img/
+│ ├── fondo.jpg
+│ ├── fondo-texto.jpg
+│ ├── menu-fondo.jpg
+│ ├── guitarra-rota.png
+│ ├── fierro_sprites.png
+│ ├── moreno_sprites.png
+│ └── boton.png
+│
+└── js/
+├── main.js
+├── phaserConfig.js
+├── gameLoop.js
+├── versos.js
+└── utils.js
+```
+---
+
+## ⚙️ Instalación y ejecución
+
+### Opción 1 — Servidor local (recomendada)
+Por políticas de navegador (CORS), Phaser no puede cargar imágenes directamente desde el sistema de archivos.
+
+Usá un servidor local, por ejemplo con **VS Code** y la extensión **Live Server**, o desde consola:
+
+```bash
+# Si tenés Python instalado
+python -m http.server 8000
+```
+Luego abrí el juego en tu navegador en:
+```bash
+http://localhost:8000/
+```
+### 🖥️ Opción 2 — Hosting gratuito  
+
+Podés subir la carpeta completa a:  
+- [Itch.io](https://itch.io/)  
+- [Netlify](https://www.netlify.com/)  
+- [GitHub Pages](https://pages.github.com/)  
+
+---
+
+## 🧠 Créditos y referencias  
+
+- **Texto original:** *José Hernández – El Gaucho Martín Fierro* (1872)  
+- **Pixel art y diseño:** Generado con IA y edición manual  
+- **Música de guitarra:** Dominio público / Creative Commons  
+- **Motor de juego:** [Phaser 3](https://phaser.io/)  
+- **Fuente pixel:** [PressStart2P](https://raw.githubusercontent.com/google/fonts/refs/heads/main/ofl/pressstart2p/PressStart2P-Regular.ttf)  
+
+---
+
+## 🚀 Próximas mejoras  
+
+- 🎙️ Voces de payadores con IA  
+- 🧾 Más rondas (versos adicionales)  
+- 🕹️ Sistema de puntuación y ranking  
+- 🎨 Animaciones dinámicas durante las payadas  
+- 🌐 Versión web y móvil completamente adaptativa  
+
+---
+
+> *"Aquí me pongo a cantar  
+> al compás de la vigüela..."*  
+> — José Hernández  

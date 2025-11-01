@@ -1,21 +1,15 @@
-import { VersosFunciones } from "./versos.js";
 import { PhaserConfig } from "./phaserConfig.js";
-import { GameLoop } from "./gameLoop.js";
+import BootScene from "./scenes/BootScene.js";
+import MenuScene from "./scenes/MenuScene.js";
+import PlayScene from "./scenes/PlayScene.js";
+import UIScene from "./scenes/UIScene.js";
+import GameOverScene from "./scenes/GameOverScene.js";
 
-let vidas = 3;
-let versosCompletados = 0;
-let dificultad = 'normal'; // 'exploracion' o 'vidaUnica'
+const configObj = new PhaserConfig({
+  width: window.innerWidth,
+  height: window.innerHeight,
+  parent: 'game-container',
+  scenes: [ BootScene, MenuScene, PlayScene, UIScene, GameOverScene ]
+}).config;
 
-function main(){
-    const config = new PhaserConfig().config;
-    
-    const pantallaJuego = new Phaser.Game(config);
-    
-    const gameLoop = new GameLoop(pantallaJuego);
-
-}
-
-
-
-
-document.addEventListener("DOMContentLoaded", main);
+window.game = new Phaser.Game(configObj);
