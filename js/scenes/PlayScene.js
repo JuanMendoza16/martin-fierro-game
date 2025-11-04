@@ -19,7 +19,7 @@ export default class PlayScene extends Phaser.Scene {
 
     create() {
         const { width, height } = this.scale;
-        this.add.image(0, 0, 'fondo').setOrigin(0, 0).setDisplaySize(width, height);
+        this.fondo = this.add.image(0, 0, 'fondo').setOrigin(0, 0).setDisplaySize(width, height);
 
         // estado inicial
         const saved = cargarProgreso();
@@ -27,13 +27,14 @@ export default class PlayScene extends Phaser.Scene {
             this.vidas = saved.vidas ?? 3;
             this.versosCompletados = saved.versosCompletados ?? 0;
         } else {
-            this.vidas = (this.dificultad === 'vidaUnica') ? 1 : (this.dificultad === 'exploracion' ? Infinity : 3);
+            this.VIDAS_MAXIMAS = (this.dificultad === 'vidaUnica') ? 1 : (this.dificultad === 'exploracion' ? Infinity : 3);
+            this.vidas = this.VIDAS_MAXIMAS;
             this.versosCompletados = 0;
         }
 
         // personajes
-        this.moreno = this.add.sprite(width * 0.12, height * 0.75, 'moreno').setScale(2);
-        this.fierro = this.add.sprite(width * 0.88, height * 0.75, 'fierro').setScale(2);
+        this.fierro = this.add.sprite(width * 0.12, height * 0.75, 'fierro').setScale(2);
+        this.moreno = this.add.sprite(width * 0.88, height * 0.75, 'moreno').setScale(2);
         this.moreno.play('moreno_habla');
         this.fierro.play('fierro_habla');
 
@@ -54,9 +55,9 @@ export default class PlayScene extends Phaser.Scene {
         this.updateHUD();
 
         // botón de menú
-        const btnMenu = this.add.image(width * 0.92, height * 0.08, 'boton').setScale(0.6).setInteractive();
-        this.add.text(btnMenu.x, btnMenu.y, 'Menú', { fontFamily: 'PressStart2P', fontSize: 12 }).setOrigin(0.5);
-        btnMenu.on('pointerup', () => this.scene.start('MenuScene'));
+        this.btnMenu = this.add.image(width * 0.92, height * 0.08, 'boton').setScale(0.6).setInteractive();
+        this.menuText = this.add.text(this.btnMenu.x, this.btnMenu.y, 'Menú', { fontFamily: 'PressStart2P', fontSize: 12 }).setOrigin(0.5);
+        this.btnMenu.on('pointerup', () => this.scene.start('MenuScene'));
 
         // opciones
         this.opcionesGroup = this.add.group();
@@ -78,6 +79,19 @@ export default class PlayScene extends Phaser.Scene {
         this.scale.on('resize', () => this.reposicionarElementos());
     }
 
+    reposicionarElementos() {
+        const { width, height } = this.scale;
+        this.fondo.setDisplaySize(width, height);
+        this.fondoTexto.setPosition(width / 2, height * 0.18).setDisplaySize(width * 0.7, height * 0.25);
+        this.versoText.setPosition(width / 2, height * 0.18);
+        this.fierro.setPosition(width * 0.12, height * 0.75);
+        this.moreno.setPosition(width * 0.88, height * 0.75);
+        this.btnMenu.setPosition(width * 0.92, height * 0.08);
+        this.menuText.setPosition(this.btnMenu.x, this.btnMenu.y);
+        this.crearOpciones(); //No entiendo que hiciste ._.
+    }
+
+
     updateHUD() {
         const vidasLabel = (this.dificultad === 'exploracion') ? '∞' : this.vidas;
         this.vidasText.setText(`Vidas: ${vidasLabel}   Versos: ${this.versosCompletados}/${TOTAL_PARA_GANAR}`);
@@ -90,7 +104,7 @@ export default class PlayScene extends Phaser.Scene {
 
         const opciones = Phaser.Utils.Array.Shuffle([...v.opciones]);
         const { width, height } = this.scale;
-        const startY = height * 0.45;
+        const startY = height * 0.45;   
         const spacing = 90;
 
         opciones.forEach((opText, idx) => {
@@ -126,8 +140,8 @@ export default class PlayScene extends Phaser.Scene {
             this.moreno.setTint(0xffaaaa);
             this.sfxRisa.play();
             this.time.delayedCall(400, () => this.moreno.clearTint());
-
-            if (this.dificultad !== 'exploracion' && this.dificultad !== 'vidaUnica') {
+            
+            if (this.dificultad !== 'exploracion') {
                 this.vidas--;
             }
             if (this.vidas <= 0 && this.dificultad !== 'exploracion') {
@@ -138,12 +152,7 @@ export default class PlayScene extends Phaser.Scene {
                 this.crearOpciones(); // vuelve a intentar el mismo verso
             }
         }
+                
     }
 
-    reposicionarElementos() {
-        const { width, height } = this.scale;
-        this.add.image(0, 0, 'fondo').setOrigin(0, 0).setDisplaySize(width, height);
-        this.fondoTexto.setPosition(width / 2, height * 0.18).setDisplaySize(width * 0.7, height * 0.25);
-        this.versoText.setPosition(width / 2, height * 0.18);
-    }
 }

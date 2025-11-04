@@ -12,8 +12,8 @@ export default class BootScene extends Phaser.Scene {
     this.load.image('boton', 'img/boton.png');
 
     // spritesheets (personajes) - placeholders: cada frame 64x64 (ajustá según tu sprite real)
-    this.load.spritesheet('moreno', 'img/moreno_sprites.png', { frameWidth: 64, frameHeight: 64 });
-    this.load.spritesheet('fierro', 'img/fierro_sprites.png', { frameWidth: 64, frameHeight: 64 });
+    this.load.spritesheet('moreno', 'img/moreno_sprites.png', { frameWidth: 128, frameHeight: 128 });
+    this.load.spritesheet('fierro', 'img/fierro_sprites.png', { frameWidth: 128, frameHeight: 128 });
 
     // audio
     this.load.audio('bgm', 'audio/bgm_payada.mp3');
@@ -29,13 +29,13 @@ export default class BootScene extends Phaser.Scene {
     // animaciones simples
     this.anims.create({
       key: 'moreno_habla',
-      frames: this.anims.generateFrameNumbers('moreno', { start: 0, end: 1 }),
-      frameRate: 2,
+      frames: this.anims.generateFrameNumbers('moreno', { start: 0, end: 0 }),
+      frameRate: 1,
       repeat: -1
     });
     this.anims.create({
       key: 'fierro_habla',
-      frames: this.anims.generateFrameNumbers('fierro', { start: 0, end: 1 }),
+      frames: this.anims.generateFrameNumbers('fierro', { start: 0, end: 0 }),
       frameRate: 2,
       repeat: -1
     });

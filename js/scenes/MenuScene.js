@@ -12,7 +12,7 @@ export default class MenuScene extends Phaser.Scene {
     }
     create() {
         const { width, height } = this.scale;
-        this.add.image(0, 0, 'menuFondo').setOrigin(0, 0).setDisplaySize(width, height);
+        this.menuFondo = this.add.image(0, 0, 'menuFondo').setOrigin(0, 0).setDisplaySize(width, height);
 
         // botones de modo
         const modos = [
@@ -21,6 +21,7 @@ export default class MenuScene extends Phaser.Scene {
             { key: 'vidaUnica', text: 'Modo duelo (1 vida)' }
         ];
 
+        this.btns = new Array();
         const startY = height * 0.5;
         modos.forEach((m, idx) => {
             const btn = this.add.image(width / 2, startY + idx * 80, 'boton').setScale(2,1).setInteractive();
@@ -34,16 +35,19 @@ export default class MenuScene extends Phaser.Scene {
                 // pasa la dificultad y va a PlayScene
                 this.scene.start('PlayScene', { dificultad: m.key });
             });
+            this.btns.push({btn, label});
         });
 
         // botón continuar si hay progreso
         const progreso = cargarProgreso();
+        console.log(this.btns.length);
         if (progreso && typeof progreso.versosCompletados === 'number') {
-            const contBtn = this.add.image(width / 2, height * 0.9, 'boton').setScale(1).setInteractive();
-            this.add.text(contBtn.x, contBtn.y, 'Continuar', { fontFamily: 'PressStart2P', fontSize: 10 }).setOrigin(0.5);
-            contBtn.on('pointerup', () => {
+            const btn = this.add.image(width / 2, height/2 + 80 *this.btns.length+1, 'boton').setScale(1).setInteractive();
+            const label = this.add.text(btn.x, btn.y, 'Continuar', { fontFamily: 'PressStart2P', fontSize: 10 }).setOrigin(0.5);
+            btn.on('pointerup', () => {
                 this.scene.start('PlayScene', { continuar: true });
             });
+            this.btns.push({btn, label});
         }
 
         // música menú
@@ -57,5 +61,23 @@ export default class MenuScene extends Phaser.Scene {
                 if (!this.bgm.isPlaying) this.bgm.play();
             });
         }
+        
+        this.scale.on("resize", () => this.reposicionarElemntos());
+    }
+
+    reposicionarElemntos(){
+        const { width, height } = this.scale;
+        this.menuFondo.setDisplaySize(width, height);
+        this.btns.forEach((el,idx) =>{
+            if (idx+1 !== this.btns.length){
+                el.btn.setScale(2,1);
+            }else{
+                el.btn.setScale(1);
+            }
+            el.btn.setPosition(width / 2, height/2 + idx * 80);
+            el.label.setPosition(el.btn.x, el.btn.y);
+           }   
+        )
     }
 }
+
