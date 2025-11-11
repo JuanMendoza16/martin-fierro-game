@@ -16,11 +16,11 @@ como la ave solitaria
   },
   {
     textoAnterior: `Mientras suene el encordao,
-    Mientras encuentre el compás,
-    Yo no he de quedarme atrás
-    Sin defender la parada
-    Y he jurado que jamás
-    `,
+Mientras encuentre el compás,
+Yo no he de quedarme atrás
+Sin defender la parada
+Y he jurado que jamás
+`,
     parteFaltanteCorrecta: "Me la han de llevar robada",
     opciones: [
       "Me dejarán a la tirada",
@@ -31,11 +31,11 @@ como la ave solitaria
   },
   {
     textoAnterior: `A un cantor le llaman bueno
-    Cuando es mejor que los piores;
-    Y sin ser de los mejores,
-    Encontrándose dos juntos,
-    Es deber de los cantores
-    `,
+Cuando es mejor que los piores;
+Y sin ser de los mejores,
+Encontrándose dos juntos,
+Es deber de los cantores
+`,
     parteFaltanteCorrecta: "El cantar de contra-punto.",
     opciones: [
       "No temblar en la payada",
@@ -46,11 +46,11 @@ como la ave solitaria
   },
   {
     textoAnterior: `El hombre debe mostrarse
-    Cuando la ocasión le llegue.
-    Hace mal el que se niegue
-    Dende que lo sabe hacer,
-    Y muchos suelen tener
-    `,
+Cuando la ocasión le llegue.
+Hace mal el que se niegue
+Dende que lo sabe hacer,
+Y muchos suelen tener
+`,
     parteFaltanteCorrecta: "Vanagloria en que los rueguen.",
     opciones: [
       "El honor de un gil atarre",
@@ -61,11 +61,11 @@ como la ave solitaria
   },
   {
     textoAnterior: `Cuando mozo fui cantor.
-    Es una cosa muy dicha.
-    Mas la suerte se encapricha
-    Y me persigue costante:
-    De ese tiempo en adelante
-    `,
+Es una cosa muy dicha.
+Mas la suerte se encapricha
+Y me persigue costante:
+De ese tiempo en adelante
+`,
     parteFaltanteCorrecta: "Canté mis propias desdichas.",
     opciones: [
       "No me maté de suerte",
@@ -76,11 +76,11 @@ como la ave solitaria
   },
   {
     textoAnterior: `Y aquellos años dichosos
-    Tratará de recordar;
-    Veré si puedo olvida
-    Tan desgraciada mudanza.
-    Y quien se tenga confianza
-    `,
+Tratará de recordar;
+Veré si puedo olvida
+Tan desgraciada mudanza.
+Y quien se tenga confianza
+`,
     parteFaltanteCorrecta: "No se achique el remil gil",
     opciones: [
       "Que se re pare de manos",
@@ -91,11 +91,11 @@ como la ave solitaria
   },
   {
     textoAnterior: `Y el cantor que se presiente,
-    Que tenga o no quien lo ampare,
-    No espere que yo dispare,
-    Aunque su saber sea mucho.
-    Vamos en el mesmo pucho
-    `,
+Que tenga o no quien lo ampare,
+No espere que yo dispare,
+Aunque su saber sea mucho.
+Vamos en el mesmo pucho
+`,
     parteFaltanteCorrecta: "A prenderle hasta que aclare.",
     opciones: [
       "A darle sin nada de piedad",
@@ -106,11 +106,11 @@ como la ave solitaria
   },
   {
     textoAnterior: `Y seguiremos, si gusta,
-    Hasta que se vaya el día.
-    Era la costumbre mía
-    Cantar las noches enteras.
-    Había entonces, donde quiera,
-    `,
+Hasta que se vaya el día.
+Era la costumbre mía
+Cantar las noches enteras.
+Había entonces, donde quiera,
+`,
     parteFaltanteCorrecta: "Cantores de fantasía",
     opciones: [
       "Pichis de Olavarría",
@@ -121,11 +121,11 @@ como la ave solitaria
   },
   {
     textoAnterior: `Y si alguno no se atrevo
-    A seguir la caravana,
-    O si cantando no gana,
-    Se lo digo sin lisonja:
-    Haga sonar una esponja
-    `,
+A seguir la caravana,
+O si cantando no gana,
+Se lo digo sin lisonja:
+Haga sonar una esponja
+`,
     parteFaltanteCorrecta:  "O ponga cuerdas de lana.",
     opciones: [
       "Y use una tanga roja.",

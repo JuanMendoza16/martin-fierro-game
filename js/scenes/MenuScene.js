@@ -40,7 +40,6 @@ export default class MenuScene extends Phaser.Scene {
 
         // botón continuar si hay progreso
         const progreso = cargarProgreso();
-        console.log(this.btns.length);
         if (progreso && typeof progreso.versosCompletados === 'number') {
             const btn = this.add.image(width / 2, height/2 + 80 *this.btns.length+1, 'boton').setScale(1).setInteractive();
             const label = this.add.text(btn.x, btn.y, 'Continuar', { fontFamily: 'PressStart2P', fontSize: 10 }).setOrigin(0.5);

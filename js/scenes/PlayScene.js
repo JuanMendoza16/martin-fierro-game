@@ -40,10 +40,10 @@ export default class PlayScene extends Phaser.Scene {
 
         // cuadro de texto
         this.fondoTexto = this.add.image(width / 2, height * 0.18, 'fondoTexto')
-            .setDisplaySize(width * 0.7, height * 0.25).setOrigin(0.5);
+            .setDisplaySize(width * 0.6, height * 0.25).setOrigin(0.5);
         this.versoText = this.add.text(width / 2, height * 0.18, '', {
             fontFamily: 'PressStart2P',
-            fontSize: 28,
+            fontSize: 18,
             wordWrap: { width: this.fondoTexto.displayWidth * 0.9 }
         }).setOrigin(0.5);
 
@@ -102,7 +102,7 @@ export default class PlayScene extends Phaser.Scene {
         const v = obtenerVerso(this.versosCompletados);
         this.versoText.setText(`${v.textoAnterior} ...`);
 
-        const opciones = Phaser.Utils.Array.Shuffle([...v.opciones]);
+        const opciones = v.opciones;
         const { width, height } = this.scale;
         const startY = height * 0.45;   
         const spacing = 90;
