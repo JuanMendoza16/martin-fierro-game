@@ -1,3 +1,7 @@
+//  En mi defensa (solo mia), queria que los versos fueran clave valor {verso: true/false} 
+//  para la gestion de los mismos, pero J lo puso asi por alguna razon.
+//                                                                              - El otro J 
+
 export const Versos = [
   {
     textoAnterior: `Aquí me pongo a cantar
@@ -6,11 +10,11 @@ que el hombre que lo desvela
 una pena estrordinaria,
 como la ave solitaria
 `,
-    parteFaltanteCorrecta: "con el cantar se consuela…",
+    parteFaltanteCorrecta: "con el cantar se consuela",
     opciones: [
-      "con el cantar se consuela…",
-      "cuando lo llama la batasha…",
-      "no sé pero cumple sílabas… "
+      "con el cantar se consuela",
+      "cuando lo llama la batasha",
+      "no sé pero cumple sílabas"
     ],
     correctIndex: 0
   },
@@ -36,11 +40,11 @@ Y sin ser de los mejores,
 Encontrándose dos juntos,
 Es deber de los cantores
 `,
-    parteFaltanteCorrecta: "El cantar de contra-punto.",
+    parteFaltanteCorrecta: "El cantar de contra-punto",
     opciones: [
       "No temblar en la payada",
       "Vigüelear como un benteveo",
-      "El cantar de contra-punto."
+      "El cantar de contra-punto"
     ],
     correctIndex: 2
   },
@@ -51,10 +55,10 @@ Hace mal el que se niegue
 Dende que lo sabe hacer,
 Y muchos suelen tener
 `,
-    parteFaltanteCorrecta: "Vanagloria en que los rueguen.",
+    parteFaltanteCorrecta: "Vanagloria en que los rueguen",
     opciones: [
       "El honor de un gil atarre",
-      "Vanagloria en que los rueguen.",
+      "Vanagloria en que los rueguen",
       "Gloria ante la muerte"
     ],
     correctIndex: 1
@@ -66,11 +70,11 @@ Mas la suerte se encapricha
 Y me persigue costante:
 De ese tiempo en adelante
 `,
-    parteFaltanteCorrecta: "Canté mis propias desdichas.",
+    parteFaltanteCorrecta: "Canté mis propias desdichas",
     opciones: [
       "No me maté de suerte",
-      "el destino me fue errante.",
-      "Canté mis propias desdichas."
+      "el destino me fue errante",
+      "Canté mis propias desdichas"
     ],
     correctIndex: 2
   },
@@ -81,13 +85,13 @@ Veré si puedo olvida
 Tan desgraciada mudanza.
 Y quien se tenga confianza
 `,
-    parteFaltanteCorrecta: "No se achique el remil gil",
+    parteFaltanteCorrecta: "Tiemple y vamos a cantar",
     opciones: [
+      "Tiemple y vamos a cantar",
       "Que se re pare de manos",
-      "No se achique el remil gil",
-      "Tiemple y vamos a cantar."
+      "No se achique el remil gil"
     ],
-    correctIndex: 1
+    correctIndex: 0
   },
   {
     textoAnterior: `Y el cantor que se presiente,
@@ -96,7 +100,7 @@ No espere que yo dispare,
 Aunque su saber sea mucho.
 Vamos en el mesmo pucho
 `,
-    parteFaltanteCorrecta: "A prenderle hasta que aclare.",
+    parteFaltanteCorrecta: "A prenderle hasta que aclare",
     opciones: [
       "A darle sin nada de piedad",
       "A cocinar como las chinas",
@@ -126,11 +130,11 @@ O si cantando no gana,
 Se lo digo sin lisonja:
 Haga sonar una esponja
 `,
-    parteFaltanteCorrecta:  "O ponga cuerdas de lana.",
+    parteFaltanteCorrecta:  "O ponga cuerdas de lana",
     opciones: [
       "Y use una tanga roja.",
       "Antes que perder la parada.",
-      "O ponga cuerdas de lana."
+      "O ponga cuerdas de lana"
     ],
     correctIndex: 2
   }

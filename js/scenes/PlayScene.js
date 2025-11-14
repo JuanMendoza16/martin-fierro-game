@@ -26,6 +26,7 @@ export default class PlayScene extends Phaser.Scene {
         if (this.continuar && saved) {
             this.vidas = saved.vidas ?? 3;
             this.versosCompletados = saved.versosCompletados ?? 0;
+            this.dificultad = saved.dificultad ?? "normal";
         } else {
             this.VIDAS_MAXIMAS = (this.dificultad === 'vidaUnica') ? 1 : (this.dificultad === 'exploracion' ? Infinity : 3);
             this.vidas = this.VIDAS_MAXIMAS;
@@ -57,7 +58,9 @@ export default class PlayScene extends Phaser.Scene {
         // botón de menú
         this.btnMenu = this.add.image(width * 0.92, height * 0.08, 'boton').setScale(0.6).setInteractive();
         this.menuText = this.add.text(this.btnMenu.x, this.btnMenu.y, 'Menú', { fontFamily: 'PressStart2P', fontSize: 12 }).setOrigin(0.5);
-        this.btnMenu.on('pointerup', () => this.scene.start('MenuScene'));
+        this.btnMenu.on('pointerup', () => {
+            guardarProgreso({ versosCompletados: this.versosCompletados, vidas: this.vidas, dificultad: this.dificultad });
+            this.scene.start('MenuScene')});
 
         // opciones
         this.opcionesGroup = this.add.group();
@@ -94,7 +97,7 @@ export default class PlayScene extends Phaser.Scene {
 
     updateHUD() {
         const vidasLabel = (this.dificultad === 'exploracion') ? '∞' : this.vidas;
-        this.vidasText.setText(`Vidas: ${vidasLabel}   Versos: ${this.versosCompletados}/${TOTAL_PARA_GANAR}`);
+        this.vidasText.setText(`Vidas: ${vidasLabel}   Versos: ${this.versosCompletados+1}/${TOTAL_PARA_GANAR}`);
     }
 
     crearOpciones() {
@@ -130,7 +133,7 @@ export default class PlayScene extends Phaser.Scene {
 
             this.versosCompletados++;
             if (this.versosCompletados >= TOTAL_PARA_GANAR) {
-                this.scene.start('GameOverScene', { victoria: true });
+                this.scene.start('GameOverScene', { victoria: true,dificultad:this.dificultad});
             } else {
                 this.crearOpciones();
                 this.updateHUD();
@@ -145,7 +148,9 @@ export default class PlayScene extends Phaser.Scene {
                 this.vidas--;
             }
             if (this.vidas <= 0 && this.dificultad !== 'exploracion') {
-                this.scene.start('GameOverScene', { victoria: false });
+                guardarProgreso({ versosCompletados: 0, vidas: this.VIDAS_MAXIMAS, dificultad: this.dificultad });
+                this.scene.start('GameOverScene', { victoria: false,dificultad:this.dificultad});
+
             } else {
                 this.updateHUD();
                 this.tweens.add({ targets: this.fondoTexto, x: this.fondoTexto.x + 8, duration: 40, yoyo: true, repeat: 3 });
